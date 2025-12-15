@@ -1,57 +1,57 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900">
-    <!-- Language Toggle - Fixed Top Right -->
+  <div class="min-h-screen bg-white">
+    <!-- Language Toggle - Fixed Top Right with proper z-index -->
     <button
       @click="toggleLanguage"
-      class="fixed top-3 right-3 z-50 bg-white/10 backdrop-blur-md rounded-full px-3 py-2 flex items-center gap-2 text-white text-xs font-medium hover:bg-white/20 transition-all border border-white/20"
+      class="fixed top-4 right-4 z-[100] bg-blue-600 text-white rounded-full px-4 py-2 flex items-center gap-2 shadow-lg hover:bg-blue-700 transition-all text-sm font-medium"
     >
       <span>{{ currentLang === 'en' ? '🇬🇧 EN' : '🇰🇭 KM' }}</span>
     </button>
 
-    <!-- Compact Header -->
-    <header class="bg-black/40 backdrop-blur-sm border-b border-white/10 sticky top-0 z-40">
-      <div class="px-4 py-3">
+    <!-- Clean Header -->
+    <header class="bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-md">
+      <div class="px-4 py-4">
         <div class="flex items-center justify-between">
-          <div class="flex items-center gap-2">
-            <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
-              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
             <div>
-              <h1 class="text-lg font-bold text-white">{{ t('appName') }}</h1>
-              <p class="text-xs text-gray-400">{{ currentMileage.toLocaleString() }} {{ t('km') }}</p>
+              <h1 class="text-xl font-bold">{{ t('appName') }}</h1>
+              <p class="text-xs text-blue-100">{{ currentMileage.toLocaleString() }} {{ t('km') }}</p>
             </div>
           </div>
-          <div class="text-right">
-            <div class="text-xs text-gray-400">{{ t('alerts') }}</div>
-            <div class="text-lg font-bold text-yellow-400">{{ activeAlertsCount }}</div>
+          <div class="text-right bg-white/10 rounded-lg px-3 py-2">
+            <div class="text-xs text-blue-100">{{ t('alerts') }}</div>
+            <div class="text-xl font-bold">{{ activeAlertsCount }}</div>
           </div>
         </div>
       </div>
     </header>
 
     <!-- Hero Section with Car Slider -->
-    <section class="px-4 py-6">
+    <section class="bg-gradient-to-b from-blue-50 to-white px-4 py-6">
       <div class="mb-4">
-        <h2 class="text-2xl font-bold text-white mb-1">
-          {{ t('welcome') }}, <span class="text-cyan-400">Lyhuor</span>
+        <h2 class="text-2xl font-bold text-gray-900 mb-1">
+          {{ t('welcome') }}, <span class="text-blue-600">Lyhuor</span>
         </h2>
-        <p class="text-sm text-gray-400">{{ t('subtitle') }}</p>
+        <p class="text-sm text-gray-600">{{ t('subtitle') }}</p>
       </div>
       <CarSlider />
     </section>
 
-    <!-- Total Cost Card - Compact -->
-    <div class="px-4 mb-4">
-      <div class="bg-gradient-to-r from-blue-600/20 to-cyan-600/20 backdrop-blur-sm rounded-xl p-4 border border-white/10">
+    <!-- Total Cost Card -->
+    <div class="px-4 mb-6">
+      <div class="bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl p-5 shadow-lg text-white">
         <div class="flex items-center justify-between">
           <div>
-            <p class="text-xs text-gray-400 mb-1">{{ t('totalCost') }}</p>
-            <p class="text-2xl font-bold text-white">{{ totalMaintenanceValue }}</p>
+            <p class="text-sm opacity-90 mb-1">{{ t('totalCost') }}</p>
+            <p class="text-3xl font-bold">{{ totalMaintenanceValue }}</p>
           </div>
-          <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
-            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center">
+            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </div>
@@ -59,8 +59,8 @@
       </div>
     </div>
 
-    <!-- Maintenance Cards - Compact Grid -->
-    <main class="px-4 pb-6 space-y-3">
+    <!-- Maintenance Cards -->
+    <main class="px-4 pb-6 space-y-4">
       <MaintenanceCard
         v-for="(item, index) in maintenanceItems"
         :key="item.id"
@@ -73,8 +73,8 @@
       />
     </main>
 
-    <!-- Compact Footer -->
-    <footer class="px-4 py-4 text-center border-t border-white/10">
+    <!-- Footer -->
+    <footer class="px-4 py-6 text-center bg-gray-50 border-t">
       <p class="text-xs text-gray-500">{{ t('builtFor') }}</p>
     </footer>
   </div>
@@ -182,7 +182,6 @@ const handleUpdateService = (itemId, serviceData) => {
   }
 }
 
-
 onMounted(() => {
   if (!maintenanceItems.value || maintenanceItems.value.length === 0) {
     maintenanceItems.value = initialItems
@@ -191,15 +190,5 @@ onMounted(() => {
 </script>
 
 <style scoped>
-/* Smooth animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+/* Clean and simple */
 </style>

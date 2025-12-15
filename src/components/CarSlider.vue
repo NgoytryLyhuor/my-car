@@ -1,7 +1,7 @@
 <template>
   <div class="relative w-full">
     <!-- Car Image Slider -->
-    <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-800 to-gray-900 border border-white/10 shadow-2xl">
+    <div class="relative overflow-hidden rounded-2xl bg-white border-2 border-gray-200 shadow-xl">
       <!-- Main Image Container -->
       <div class="relative aspect-[4/3] overflow-hidden">
         <Transition name="fade" mode="out-in">
@@ -15,20 +15,17 @@
           />
         </Transition>
         
-        <!-- Gradient Overlay -->
-        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-        
         <!-- Car Info Badge -->
         <div class="absolute bottom-4 left-4 right-4">
-          <div class="bg-white/10 backdrop-blur-md rounded-xl px-4 py-3 border border-white/20">
+          <div class="bg-white/95 backdrop-blur-sm rounded-xl px-4 py-3 border border-gray-200 shadow-lg">
             <div class="flex items-center justify-between">
               <div>
-                <h3 class="text-white font-bold text-lg mb-0.5">Toyota Prius</h3>
-                <p class="text-gray-300 text-sm">2011 Model</p>
+                <h3 class="text-gray-900 font-bold text-lg mb-0.5">Toyota Prius</h3>
+                <p class="text-gray-600 text-sm">2011 Model</p>
               </div>
               <div class="text-right">
-                <div class="text-xs text-gray-400 mb-1">View</div>
-                <div class="text-white font-bold text-lg">{{ currentIndex + 1 }}/{{ images.length }}</div>
+                <div class="text-xs text-gray-500 mb-1">View</div>
+                <div class="text-blue-600 font-bold text-lg">{{ currentIndex + 1 }}/{{ images.length }}</div>
               </div>
             </div>
           </div>
@@ -38,20 +35,20 @@
       <!-- Navigation Arrows -->
       <button
         @click="previousImage"
-        class="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center hover:bg-white/20 transition-all border border-white/20 z-10"
+        class="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white shadow-lg rounded-full flex items-center justify-center hover:bg-gray-50 transition-all border border-gray-200 z-10"
         aria-label="Previous image"
       >
-        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
         </svg>
       </button>
       
       <button
         @click="nextImage"
-        class="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center hover:bg-white/20 transition-all border border-white/20 z-10"
+        class="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white shadow-lg rounded-full flex items-center justify-center hover:bg-gray-50 transition-all border border-gray-200 z-10"
         aria-label="Next image"
       >
-        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
         </svg>
       </button>
@@ -65,8 +62,8 @@
           :class="[
             'w-2 h-2 rounded-full transition-all duration-300',
             currentIndex === index 
-              ? 'bg-white w-6' 
-              : 'bg-white/40 hover:bg-white/60'
+              ? 'bg-blue-600 w-6' 
+              : 'bg-gray-300 hover:bg-gray-400'
           ]"
           :aria-label="`Go to image ${index + 1}`"
         />
@@ -82,8 +79,8 @@
         :class="[
           'flex-shrink-0 w-20 h-16 rounded-lg overflow-hidden border-2 transition-all',
           currentIndex === index 
-            ? 'border-cyan-400 shadow-lg shadow-cyan-400/50' 
-            : 'border-white/20 hover:border-white/40'
+            ? 'border-blue-600 shadow-lg shadow-blue-200' 
+            : 'border-gray-200 hover:border-gray-300'
         ]"
       >
         <img
