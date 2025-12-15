@@ -68,7 +68,7 @@
 
       <!-- Learn More Toggle -->
       <button
-        @click="showInfo = !showInfo"
+        @click="toggleInfo"
         class="w-full py-2 px-3 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm font-medium text-gray-700 flex items-center justify-center gap-2 transition-colors"
       >
         <span>{{ t('learnMore') }}</span>
@@ -340,6 +340,10 @@ const formatDateShort = (dateString) => {
   })
 }
 
+const toggleInfo = () => {
+  showInfo.value = !showInfo.value
+}
+
 const openModal = () => {
   serviceDate.value = props.item.lastServiceDate || today.value
   serviceMileage.value = props.item.lastServiceKm || props.currentMileage || null
@@ -370,17 +374,47 @@ const saveService = () => {
 </script>
 
 <style scoped>
-.slide-enter-active,
-.slide-leave-active {
-  transition: all 0.3s ease;
-  max-height: 300px;
+.slide-enter-active {
+  transition: all 0.3s ease-out;
+  overflow: hidden;
 }
 
-.slide-enter-from,
+.slide-leave-active {
+  transition: all 0.3s ease-in;
+  overflow: hidden;
+}
+
+.slide-enter-from {
+  opacity: 0;
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: 0;
+  transform: translateY(-10px);
+}
+
+.slide-enter-to {
+  opacity: 1;
+  max-height: 500px;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  margin-top: 0.5rem;
+  transform: translateY(0);
+}
+
+.slide-leave-from {
+  opacity: 1;
+  max-height: 500px;
+  transform: translateY(0);
+}
+
 .slide-leave-to {
   opacity: 0;
   max-height: 0;
-  transform: translateY(-5px);
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: 0;
+  transform: translateY(-10px);
 }
 
 .modal-enter-active,
