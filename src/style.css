@@ -3,14 +3,29 @@
 @tailwind utilities;
 
 @layer base {
+  * {
+    @apply antialiased;
+  }
+  
   body {
     @apply bg-gray-50 text-gray-900;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  html {
+    scroll-behavior: smooth;
   }
 }
 
 @layer components {
   .card-hover {
     @apply transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
   }
 }
 
