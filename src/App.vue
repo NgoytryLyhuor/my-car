@@ -1,108 +1,81 @@
 <template>
-  <div class="min-h-screen bg-gray-50">
-    <!-- Language Toggle -->
-    <div class="fixed top-4 right-4 z-50">
-      <button
-        @click="toggleLanguage"
-        class="bg-white shadow-lg rounded-full px-4 py-2 flex items-center gap-2 hover:bg-gray-50 transition-colors border border-gray-200"
-      >
-        <span class="text-sm font-medium">{{ currentLang === 'en' ? '🇬🇧 EN' : '🇰🇭 KM' }}</span>
-        <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.196 2.196l-.707.707M6 9H3m3 6H3m9-9h3m-3 9h3m-9-3v3m9-3v3" />
-        </svg>
-      </button>
-    </div>
+  <div class="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900">
+    <!-- Language Toggle - Fixed Top Right -->
+    <button
+      @click="toggleLanguage"
+      class="fixed top-3 right-3 z-50 bg-white/10 backdrop-blur-md rounded-full px-3 py-2 flex items-center gap-2 text-white text-xs font-medium hover:bg-white/20 transition-all border border-white/20"
+    >
+      <span>{{ currentLang === 'en' ? '🇬🇧 EN' : '🇰🇭 KM' }}</span>
+    </button>
 
-    <!-- Header -->
-    <header class="bg-white shadow-sm border-b">
-      <div class="container mx-auto px-4 py-4">
+    <!-- Compact Header -->
+    <header class="bg-black/40 backdrop-blur-sm border-b border-white/10 sticky top-0 z-40">
+      <div class="px-4 py-3">
         <div class="flex items-center justify-between">
-          <div class="flex items-center gap-3">
-            <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center">
-              <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
             <div>
-              <h1 class="text-2xl font-bold text-gray-900">{{ t('appName') }}</h1>
-              <p class="text-sm text-gray-500">{{ t('currentMileage') }}: {{ currentMileage.toLocaleString() }} {{ t('km') }}</p>
+              <h1 class="text-lg font-bold text-white">{{ t('appName') }}</h1>
+              <p class="text-xs text-gray-400">{{ currentMileage.toLocaleString() }} {{ t('km') }}</p>
             </div>
+          </div>
+          <div class="text-right">
+            <div class="text-xs text-gray-400">{{ t('alerts') }}</div>
+            <div class="text-lg font-bold text-yellow-400">{{ activeAlertsCount }}</div>
           </div>
         </div>
       </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="bg-gradient-to-r from-blue-600 to-blue-700 text-white py-12">
-      <div class="container mx-auto px-4">
-        <div class="flex flex-col md:flex-row items-center gap-8">
-          <div class="flex-1 text-center md:text-left">
-            <h2 class="text-4xl md:text-5xl font-bold mb-3">
-              {{ t('welcome') }}, <span class="text-yellow-300">Lyhuor</span>
-            </h2>
-            <p class="text-xl text-blue-100 mb-6">{{ t('subtitle') }}</p>
-            <div class="flex gap-4 justify-center md:justify-start">
-              <div class="bg-white/20 rounded-lg px-6 py-3 backdrop-blur-sm">
-                <div class="text-sm opacity-90">{{ t('totalServices') }}</div>
-                <div class="text-3xl font-bold">{{ maintenanceItems.length }}</div>
-              </div>
-              <div class="bg-white/20 rounded-lg px-6 py-3 backdrop-blur-sm">
-                <div class="text-sm opacity-90">{{ t('alerts') }}</div>
-                <div class="text-3xl font-bold">{{ activeAlertsCount }}</div>
-              </div>
-            </div>
-          </div>
-          <div class="flex-1 flex justify-center">
-            <div class="relative">
-              <img 
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/2011_Toyota_Prius_--_NHTSA.jpg/800px-2011_Toyota_Prius_--_NHTSA.jpg" 
-                alt="Toyota Prius 2011" 
-                class="w-full max-w-md rounded-2xl shadow-2xl"
-                @error="handleImageError"
-                loading="lazy"
-              />
-              <div class="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-white rounded-lg px-4 py-2 shadow-lg">
-                <p class="text-sm font-semibold text-gray-800">Toyota Prius 2011</p>
-              </div>
-            </div>
-          </div>
-        </div>
+    <!-- Hero Section with Car Slider -->
+    <section class="px-4 py-6">
+      <div class="mb-4">
+        <h2 class="text-2xl font-bold text-white mb-1">
+          {{ t('welcome') }}, <span class="text-cyan-400">Lyhuor</span>
+        </h2>
+        <p class="text-sm text-gray-400">{{ t('subtitle') }}</p>
       </div>
+      <CarSlider />
     </section>
 
-    <!-- Dashboard -->
-    <main class="container mx-auto px-4 py-8">
-      <!-- Total Cost Card -->
-      <div class="mb-8 bg-white rounded-xl shadow-md p-6 border-l-4 border-blue-600">
-        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+    <!-- Total Cost Card - Compact -->
+    <div class="px-4 mb-4">
+      <div class="bg-gradient-to-r from-blue-600/20 to-cyan-600/20 backdrop-blur-sm rounded-xl p-4 border border-white/10">
+        <div class="flex items-center justify-between">
           <div>
-            <h3 class="text-xl font-bold text-gray-800 mb-1">{{ t('totalCost') }}</h3>
-            <p class="text-sm text-gray-600">{{ t('forDueItems') }}</p>
+            <p class="text-xs text-gray-400 mb-1">{{ t('totalCost') }}</p>
+            <p class="text-2xl font-bold text-white">{{ totalMaintenanceValue }}</p>
           </div>
-          <div class="text-4xl font-bold text-blue-600">
-            {{ totalMaintenanceValue }}
+          <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- Maintenance Cards -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <MaintenanceCard
-          v-for="(item, index) in maintenanceItems"
-          :key="item.id"
-          :item="item"
-          :current-mileage="currentMileage"
-          :lang="currentLang"
-          :translations="translations[currentLang]"
-          :animation-delay="index * 0.1"
-          @update-service="handleUpdateService"
-        />
-      </div>
+    <!-- Maintenance Cards - Compact Grid -->
+    <main class="px-4 pb-6 space-y-3">
+      <MaintenanceCard
+        v-for="(item, index) in maintenanceItems"
+        :key="item.id"
+        :item="item"
+        :current-mileage="currentMileage"
+        :lang="currentLang"
+        :translations="translations[currentLang]"
+        :index="index"
+        @update-service="handleUpdateService"
+      />
     </main>
 
-    <!-- Footer -->
-    <footer class="mt-12 py-6 bg-white border-t text-center">
-      <p class="text-gray-600">{{ t('builtFor') }}</p>
+    <!-- Compact Footer -->
+    <footer class="px-4 py-4 text-center border-t border-white/10">
+      <p class="text-xs text-gray-500">{{ t('builtFor') }}</p>
     </footer>
   </div>
 </template>
@@ -111,6 +84,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { useStorage } from '@vueuse/core'
 import MaintenanceCard from './components/MaintenanceCard.vue'
+import CarSlider from './components/CarSlider.vue'
 import { translations, maintenanceItemsData } from './utils/translations.js'
 
 // Language
@@ -156,7 +130,7 @@ const totalMaintenanceValue = computed(() => {
       }
     }
   })
-  return total > 0 ? `$${total.toFixed(0)} USD` : '$0 USD'
+  return total > 0 ? `$${total.toFixed(0)}` : '$0'
 })
 
 // Get service status
@@ -208,10 +182,6 @@ const handleUpdateService = (itemId, serviceData) => {
   }
 }
 
-// Handle image error
-const handleImageError = (event) => {
-  event.target.src = 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&q=80&auto=format&fit=crop'
-}
 
 onMounted(() => {
   if (!maintenanceItems.value || maintenanceItems.value.length === 0) {
@@ -221,10 +191,11 @@ onMounted(() => {
 </script>
 
 <style scoped>
-@keyframes fade-in {
+/* Smooth animations */
+@keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(10px);
   }
   to {
     opacity: 1;

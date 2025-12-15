@@ -8,18 +8,25 @@
   }
   
   body {
-    @apply bg-gray-50 text-gray-900;
+    @apply text-white;
     font-feature-settings: "rlig" 1, "calt" 1;
+    background: #0f172a;
   }
   
   html {
     scroll-behavior: smooth;
   }
+
+  /* Mobile optimizations */
+  input[type="date"],
+  input[type="number"] {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
 }
 
 @layer components {
   .card-hover {
-    @apply transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1;
+    @apply transition-all duration-300 ease-in-out;
   }
 }
 
