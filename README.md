@@ -1,15 +1,26 @@
-# Prius 011 Caretaker - Digital Maintenance Dashboard
+# Prius Care - Digital Maintenance Dashboard
 
 A modern, mobile-first web application for tracking maintenance schedules and costs for a Toyota Prius 2011.
 
 ## Features
 
-- 🚗 **Maintenance Tracking**: Track 4 key maintenance items (Engine Oil, Inverter Coolant, EGR System, Cabin Air Filter)
+- 🚗 **Maintenance Tracking**: Track 7 key maintenance items
+  - Engine Oil (8,000 km)
+  - Inverter Coolant (80,000 km / 5 years)
+  - EGR System (100,000 km)
+  - Cabin Air Filter (9 months)
+  - Engine Air Filter (20,000 km)
+  - Transmission Fluid (50,000 km)
+  - Spark Plugs (100,000 km)
 - 💰 **Cost Estimation**: Display estimated costs for each service
 - 📅 **Service Logging**: Record service dates and mileage with localStorage persistence
 - 🎨 **Status Indicators**: Visual status (Green/Yellow/Red) based on service due dates
-- 📱 **Mobile-First Design**: Optimized for touch devices with large, friendly buttons
-- 🎯 **Dynamic Calculations**: Automatic "Next Due" calculations based on intervals
+- 📱 **Mobile-First Design**: Optimized for touch devices
+- 🌐 **Bilingual Support**: English and Khmer (Cambodian) language support
+- 🖼️ **Car Image Slider**: View your Prius from multiple angles
+- 📊 **Smart Alerts**: Automatic calculation of overdue/due soon items
+- 💵 **Cost Calculator**: Total estimated cost for needed services
+- 📖 **Learn More**: Expandable information sections for each maintenance item
 
 ## Tech Stack
 

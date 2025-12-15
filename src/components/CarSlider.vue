@@ -96,6 +96,10 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
+// Import local Prius images
+import prius1 from '../images/prius-1.jpg'
+import prius2 from '../images/prius-2.jpg'
+import prius3 from '../images/prius-3.jpg'
 
 const props = defineProps({
   images: {
@@ -106,11 +110,6 @@ const props = defineProps({
 
 const currentIndex = ref(0)
 let autoPlayInterval = null
-
-// Import local Prius images
-import prius1 from '../images/prius-1.jpg'
-import prius2 from '../images/prius-2.jpg'
-import prius3 from '../images/prius-3.jpg'
 
 // Prius 2011 images - using local images
 const defaultImages = [
