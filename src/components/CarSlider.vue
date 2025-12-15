@@ -110,13 +110,16 @@ const props = defineProps({
 const currentIndex = ref(0)
 let autoPlayInterval = null
 
-// Prius 2011 images - multiple angles
+// Import local Prius images
+import prius1 from '../images/prius-1.jpg'
+import prius2 from '../images/prius-2.jpg'
+import prius3 from '../images/prius-3.jpg'
+
+// Prius 2011 images - using local images
 const defaultImages = [
-  'https://www.toyota.com/imgix/responsive/images/ml/colorizer/2011/prius/prius/1J7/1.png?w=800&q=90',
-  'https://www.toyota.com/imgix/responsive/images/ml/colorizer/2011/prius/prius/1J7/2.png?w=800&q=90',
-  'https://www.toyota.com/imgix/responsive/images/ml/colorizer/2011/prius/prius/1J7/3.png?w=800&q=90',
-  'https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=800&q=80&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&q=80&auto=format&fit=crop'
+  prius1,
+  prius2,
+  prius3
 ]
 
 const images = ref(props.images.length > 0 ? props.images : defaultImages)
